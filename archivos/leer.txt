@@ -1,1 +1,3 @@
 DEntro de cada carpeta version-1, version-2,etc . Debera contner una carpeta pdf y otra de ilus traciones o alguna organizacion por el estilo
+
+Dudas sobre github: ingresar a https://docs.google.com/document/d/1RhFuqMkHY-qcdRu8NXp0xCS5HPa34WVR74KNEbysr80/edit?usp=sharing
