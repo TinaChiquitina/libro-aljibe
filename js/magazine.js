@@ -58,7 +58,7 @@ function loadPage(page, pageElement) {
 
 function loadRegions(page, element) {
 
-	$.getJSON('pages/' + page + '-regions.json').
+	$.getJSON('pages/region/' + page + '-regions.json').
 		done(function (data) {
 
 			$.each(data, function (key, region) {
@@ -87,7 +87,7 @@ function loadRegions(page, element) {
 
 // Add region
 
-function addRegion(region, pageElement) {
+/* function addRegion(region, pageElement) {
 
 	var reg = $('<div />', { 'class': 'region  ' + region['class'] }),
 		options = $('.magazine').turn('options'),
@@ -103,7 +103,127 @@ function addRegion(region, pageElement) {
 
 
 	reg.appendTo(pageElement);
+} */
+
+/* function addRegion(region, pageElement) {
+
+	var reg = $('<div />', { 'class': 'region  ' + region['class'] }),
+		options = $('.magazine').turn('options'),
+		pageWidth = options.width / 2,
+		pageHeight = options.height;
+
+	let regionData = {};
+	if (region.ver) {
+		regionData.ver = region.ver;
+	} else if (region.data && region.data.url) {
+		regionData.url = region.data.url;
+	} else if (region.data && region.data.page) {
+		regionData.page = region.data.page;
+	}
+
+	reg.css({
+		top: Math.round(region.y / pageHeight * 100) + '%',
+		left: Math.round(region.x / pageWidth * 100) + '%',
+		width: Math.round(region.width / pageWidth * 100) + '%',
+		height: Math.round(region.height / pageHeight * 100) + '%'
+	}).attr('region-data', $.param(regionData)); // Serializa solo la propiedad relevante
+
+
+	reg.appendTo(pageElement);
+} */
+
+function addRegion(region, pageElement) {
+	let class2 = 'region';
+	if (region.src) {
+		//alert(class2)
+		class2 = 'imgRegion '
+		//alert(region['idp'])
+	}
+	var reg = $('<div />', { 'id': region.idp, 'class': class2 + " " + region['class'] }),
+		options = $('.magazine').turn('options'),
+		pageWidth = options.width / 2,
+		pageHeight = options.height;
+
+	reg.css({
+		top: Math.round(region.y / pageHeight * 100) + '%',
+		left: Math.round(region.x / pageWidth * 100) + '%',
+		width: Math.round(region.width / pageWidth * 100) + '%',
+		height: Math.round(region.height / pageHeight * 100) + '%'
+	});
+
+	// Adjunta los datos directamente usando .data()
+	if (region.url) {
+		reg.data('url', region.url);
+	}
+	if (region.page) {
+		reg.data('page', region.page);
+	}
+	if (region.ver) {
+		reg.data('ver', region.ver);
+	}
+	if (region.src) {
+		reg.data('src', region.src);
+	}
+	if (region.idp) {
+
+		reg.data('idp', region.idp);
+
+	}
+	if (region.data) { // Si tienes una propiedad "data" más compleja
+		$.each(region.data, function (key, value) {
+			reg.data(key, value);
+		});
+	}
+
+	img(region).appendTo(reg);
+
+	reg.appendTo(pageElement);//el reg se inserta en pageElemto
+
 }
+
+function img(region) {
+	const div = $("div#" + region.idp)
+	let nuevaImagen = $("<img/>")
+	nuevaImagen.attr('src', region.src);
+	nuevaImagen.attr('alt', 'img');
+	nuevaImagen.addClass('img_' + region.idp);
+	nuevaImagen.css({ width: '90px', height: 'auto', visibility: 'hidden' });
+	return nuevaImagen;
+}
+
+function video(region) {
+	var miVideo = $('<video></video>');
+
+	// Establecer los atributos del <video>
+	//miVideo.attr('poster', 'https://i.gifer.com/fetch/w300-preview/70/7064db152d16701a394ee1e5b8e0bccf.gif');
+	miVideo.attr("id", "div#" + region.idp);
+	miVideo.attr('loop', 'false'); // O simplemente .prop('loop', true);
+	miVideo.attr('autoplay', 'false'); // O simplemente .prop('autoplay', true);
+	miVideo.attr('playsinline', ''); // O simplemente .prop('playsinline', true);
+
+	// Crear el elemento <source> para el MP4
+	var sourceMP4 = $('<source>');
+	sourceMP4.attr('src', region.src);
+	sourceMP4.attr('type', 'video/mp4');
+
+	// (Opcional) Crear el elemento <source> para WebM
+	var sourceWebM = $('<source>');
+	sourceWebM.attr('src', region.src); // Reemplaza con la URL real del WebM
+	sourceWebM.attr('type', 'video/webm');
+
+	// Agregar las fuentes al elemento <video>
+	miVideo.append(sourceMP4);
+	miVideo.append(sourceWebM); // Si tienes la fuente WebM
+
+	// Agregar un texto de fallback por si el navegador no soporta <video>
+	miVideo.text('Tu navegador no soporta la reproducción de video.');
+
+	// Ahora 'miVideo' es el elemento <video> completo con sus atributos y fuentes.
+	// Puedes insertarlo en tu DOM usando appendTo(), prependTo(), append(), etc.
+	return miVideo;
+
+}
+
 
 function regionClick(event) {
 
@@ -117,7 +237,7 @@ function regionClick(event) {
 
 }
 
-function processRegion(region, regionType) {
+/* function processRegion(region, regionType) {
 
 	data = decodeParams(region.attr('region-data'));
 
@@ -144,8 +264,44 @@ function processRegion(region, regionType) {
 			$('.magazine').turn('page', data.page);
 
 			break;
+		case 'area':
+
+			alert(data.ver)
+
+			break;
 	}
 
+} */
+function processRegion(region, regionType) {
+
+	switch (regionType) {
+		case 'link':
+			window.open(region.data('url'));
+			break;
+		case 'zoom':
+			var regionOffset = region.offset(),
+				viewportOffset = $('.magazine-viewport').offset(),
+				pos = {
+					x: regionOffset.left - viewportOffset.left,
+					y: regionOffset.top - viewportOffset.top
+				};
+			$('.magazine-viewport').zoom('zoomIn', pos);
+			break;
+		case 'to-page':
+			$('.magazine').turn('page', region.data('page'));
+			break;
+		case 'area':
+			//en el json ver pid-- los numeros  deven ser igual a las paginas
+			//alert("div#" + region.data('ver') + " img")
+			let div_img = $("div#" + region.data('ver') + " img")
+			div_img.css('visibility', 'visible')
+			break;
+
+		case 'gif':
+			//algo si lo toco
+			break;
+
+	}
 }
 
 // Load large page
