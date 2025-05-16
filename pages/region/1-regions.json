@@ -1,9 +1,9 @@
 [
     { 
-        "x": 206,
-        "y": 95,
-        "width": 45, 
-        "height": 305, 
+        "x": 275,
+        "y": 120,
+        "width": 65, 
+        "height": 405, 
         "class": "area",
         "ver":"img_1",
         "idp":"area_1"

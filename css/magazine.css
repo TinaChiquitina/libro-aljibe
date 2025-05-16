@@ -7,8 +7,8 @@ body{
 
 .magazine-viewport .container{
 	position:absolute;
-	top:45%;
-	left:50%;
+	top:35%;
+	left:45%;
 	width:922px;
 	height:600px;
 	margin:auto;
@@ -238,12 +238,12 @@ body{
 }
 
 .thumbnails{
-	position:absolute;
-	bottom:1%;
-	left:0;
-	width:100%;
-	height:140px;
-	z-index:1;
+	position: absolute;
+    bottom: 12%;
+    left: 55px;
+    width: 100%;
+    height: 140px;
+    z-index: 1;
 }
 
 .thumbnails > div{
