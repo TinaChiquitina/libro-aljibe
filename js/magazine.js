@@ -404,11 +404,19 @@ function resizeViewport() {
 		boundH = height - magazineOffset.top - $('.magazine').height(),
 		marginTop = (boundH - $('.thumbnails > div').height()) / 2;
 
+
+
+
 	if (marginTop < 0) {
 		$('.thumbnails').css({ height: 1 });
 	} else {
 		$('.thumbnails').css({ height: boundH });
 		$('.thumbnails > div').css({ marginTop: marginTop });
+	}
+
+	if (!navigator.userAgent.indexOf("Chrome") > -1) {
+		$('.thumbnails').css({ height: 1 });
+
 	}
 
 	if (magazineOffset.top < $('.made').height())
