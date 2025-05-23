@@ -273,7 +273,8 @@ function regionClick(event) {
 
 } */
 function processRegion(region, regionType) {
-
+	console.log("processRegion:")
+	console.log(regionType)
 	switch (regionType) {
 		case 'link':
 			window.open(region.data('url'));
