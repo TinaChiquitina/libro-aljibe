@@ -23,7 +23,7 @@ function addPage(page, book) {
 }
 
 function loadPage(page, pageElement) {
-
+	console.log("LoadePAge aca se lee json region")
 	// Create an image element
 
 	var img = $('<img />');
@@ -295,6 +295,8 @@ function processRegion(region, regionType) {
 			//en el json ver pid-- los numeros  deven ser igual a las paginas
 			//alert("div#" + region.data('ver') + " img")
 			console.log(region.data('ver'))
+			//Nota: error cuando se navega por los tumbnies las foto chicas de abajo
+			//regiones json no funcionana revisar este tema
 			let div_img = $("div#" + region.data('ver') + " img")
 			div_img.css('visibility', 'visible')
 			break;
