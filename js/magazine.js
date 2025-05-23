@@ -229,7 +229,7 @@ function regionClick(event) {
 
 	var region = $(event.target);
 	if (region.hasClass('region')) {
-
+		console.log("evento click region")
 		var regionType = $.trim(region.attr('class').replace('region', ''));
 
 		return processRegion(region, regionType);
