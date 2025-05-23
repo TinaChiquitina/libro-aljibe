@@ -402,7 +402,7 @@ function resizeViewport() {
 
 	var magazineOffset = $('.magazine').offset(),
 		boundH = height - magazineOffset.top - $('.magazine').height(),
-		marginTop = (boundH - $('.thumbnails > div').height()) / 2;
+		marginTop = 0;//Brave no funciona (boundH - $('.thumbnails > div').height()) / 2;
 
 	if (marginTop < 0) {
 		$('.thumbnails').css({ height: 1 });
