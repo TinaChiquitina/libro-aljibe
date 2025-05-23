@@ -367,8 +367,9 @@
 
 			if ($.isTouch) {
 				$('.magazine').bind('touchstart', regionClick);
+				//$('body').on('bind', '.magazine', regionClick);
 			} else {
-				$('.magazine').click(regionClick);
+				$('body').on('click', '.magazine', regionClick);
 			}
 
 			// Events for the next button
