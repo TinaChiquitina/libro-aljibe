@@ -294,6 +294,7 @@ function processRegion(region, regionType) {
 		case 'area':
 			//en el json ver pid-- los numeros  deven ser igual a las paginas
 			//alert("div#" + region.data('ver') + " img")
+			console.log(region.data('ver'))
 			let div_img = $("div#" + region.data('ver') + " img")
 			div_img.css('visibility', 'visible')
 			break;
