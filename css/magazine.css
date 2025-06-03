@@ -45,25 +45,25 @@ body{
 }
 .magazine .region{
 	position:absolute;
-	overflow:hidden;
+	/*overflow:hidden*/;
 	/* background:#0066FF; */
-	opacity:0.8;
+	
 	/* -webkit-border-radius:10px;
 	-moz-border-radius:10px;
 	-ms-border-radius:10px;
 	-o-border-radius:10px; */
-	border-radius:20px;
+	border:1px solid black;
 	
 	/* -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"; */
 	/* filter: alpha(opacity=20); */
-	box-shadow: 10px 10px 5px 2px rgba(0, 0, 0, 0.15);
-  animation: pulse-shadow-diffused 1.5s infinite alternate;
+	/*box-shadow: 10px 10px 5px 2px rgba(0, 0, 0, 0.15);
+  animation: pulse-shadow-diffused 1.5s infinite alternate;*/
 }
 
 .magazine .region:hover{
 	cursor:pointer;
 	/* box-shadow: 10px 10px 5px 2px rgba(0, 0, 0, 0.15);	 */
-	opacity:1;
+	/*opacity:1;
 	/* -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; */
 	/* filter: alpha(opacity=50); */
 }

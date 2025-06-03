@@ -1,0 +1,24 @@
+[
+    { 
+        "x": 200,
+        "y": 430,
+        "width": 613, 
+        "height": 500, 
+        "class": "area",
+        "ver":"img_1",
+        "idp":"area_1"
+
+    },
+
+    { 
+        "x": 50,
+        "y": 50,
+        "width": 160, 
+        "height": 80, 
+        "class": "gif",
+        "src":"pages/img/1-efect.gif",
+        "idp":"img_1"
+
+
+    }
+]
