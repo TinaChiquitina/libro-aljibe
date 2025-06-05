@@ -133,96 +133,75 @@ function loadRegions(page, element) {
 } */
 
 function addRegion(region, pageElement) {
-	let class2 = 'region';
-	if (region.src) {
-		//alert(class2)
-		class2 = 'imgRegion '
-		//alert(region['idp'])
-	}
-	var reg = $('<div />', { 'id': region.idp, 'class': class2 + " " + region['class'] }),
-		options = $('.magazine').turn('options'),
-		pageWidth = options.width / 2,
-		pageHeight = options.height;
+	if (!region.not) {
+		let class2 = 'region';
+		/* if (region.src1) {
+			//alert(class2)
+			class2 = 'imgRegion '
+			//alert(region['idp'])
+		} */
+		var reg = $('<div />', { 'id': region.idp, 'class': class2 + " " + region['class'] }),
+			options = $('.magazine').turn('options'),
+			pageWidth = options.width / 2,
+			pageHeight = options.height;
 
-	reg.css({
-		top: Math.round(region.y / pageHeight * 100) + '%',
-		left: Math.round(region.x / pageWidth * 100) + '%',
-		width: Math.round(region.width / pageWidth * 100) + '%',
-		height: Math.round(region.height / pageHeight * 100) + '%'
-	});
-
-	// Adjunta los datos directamente usando .data()
-	if (region.url) {
-		reg.data('url', region.url);
-	}
-	if (region.page) {
-		reg.data('page', region.page);
-	}
-	if (region.ver) {
-		reg.data('ver', region.ver);
-	}
-	if (region.src) {
-		reg.data('src', region.src);
-	}
-	if (region.idp) {
-
-		reg.data('idp', region.idp);
-
-	}
-	if (region.data) { // Si tienes una propiedad "data" más compleja
-		$.each(region.data, function (key, value) {
-			reg.data(key, value);
+		reg.css({
+			top: Math.round(region.y / pageHeight * 100) + '%',
+			left: Math.round(region.x / pageWidth * 100) + '%',
+			width: Math.round(region.width / pageWidth * 100) + '%',
+			height: Math.round(region.height / pageHeight * 100) + '%'
 		});
+
+		// Adjunta los datos directamente usando .data()
+		if (region.url) {
+			reg.data('url', region.url);
+		}
+		if (region.page) {
+			reg.data('page', region.page);
+		}
+		if (region.ver) {
+			reg.data('ver', region.ver);
+		}
+		if (region.src1) {
+			reg.data('src1', region.src1);
+			reg.data('src2', region.src2);
+		}
+		if (region.idp) {
+
+			reg.data('idp', region.idp);
+
+		}
+		if (region.data) { // Si tienes una propiedad "data" más compleja
+			$.each(region.data, function (key, value) {
+				reg.data(key, value);
+			});
+		}
+
+		//img(region).appendTo(reg);
+		img(region, reg)
+		reg.appendTo(pageElement);//el reg se inserta en pageElemto
 	}
-
-	img(region).appendTo(reg);
-
-	reg.appendTo(pageElement);//el reg se inserta en pageElemto
-
 }
 
-function img(region) {
-	const div = $("div#" + region.idp)
+function img(region, reg) {
+
+	/* region.src2 */
+	nuevaImg(region, region.src1, 1, region.style1).appendTo(reg)
+	nuevaImg(region, "", 2, region.style2).appendTo(reg)
+}
+
+function nuevaImg(region, src, nr, style) {
 	let nuevaImagen = $("<img/>")
-	nuevaImagen.attr('src', region.src);
+	nuevaImagen.attr('src', src);
 	nuevaImagen.attr('alt', 'img');
-	nuevaImagen.addClass('img_' + region.idp);
-	nuevaImagen.css({ width: '90px', height: 'auto', visibility: 'hidden' });
+	nuevaImagen.addClass('img_' + nr + "_" + region.idp);
+
+	const myDynamicStyles = parseCssStringToObject(style)
+	nuevaImagen.css(myDynamicStyles);
+
 	return nuevaImagen;
 }
 
-function video(region) {
-	var miVideo = $('<video></video>');
-
-	// Establecer los atributos del <video>
-	//miVideo.attr('poster', 'https://i.gifer.com/fetch/w300-preview/70/7064db152d16701a394ee1e5b8e0bccf.gif');
-	miVideo.attr("id", "div#" + region.idp);
-	miVideo.attr('loop', 'false'); // O simplemente .prop('loop', true);
-	miVideo.attr('autoplay', 'false'); // O simplemente .prop('autoplay', true);
-	miVideo.attr('playsinline', ''); // O simplemente .prop('playsinline', true);
-
-	// Crear el elemento <source> para el MP4
-	var sourceMP4 = $('<source>');
-	sourceMP4.attr('src', region.src);
-	sourceMP4.attr('type', 'video/mp4');
-
-	// (Opcional) Crear el elemento <source> para WebM
-	var sourceWebM = $('<source>');
-	sourceWebM.attr('src', region.src); // Reemplaza con la URL real del WebM
-	sourceWebM.attr('type', 'video/webm');
-
-	// Agregar las fuentes al elemento <video>
-	miVideo.append(sourceMP4);
-	miVideo.append(sourceWebM); // Si tienes la fuente WebM
-
-	// Agregar un texto de fallback por si el navegador no soporta <video>
-	miVideo.text('Tu navegador no soporta la reproducción de video.');
-
-	// Ahora 'miVideo' es el elemento <video> completo con sus atributos y fuentes.
-	// Puedes insertarlo en tu DOM usando appendTo(), prependTo(), append(), etc.
-	return miVideo;
-
-}
 
 
 function regionClick(event) {
@@ -280,25 +259,19 @@ function processRegion(region, regionType) {
 			window.open(region.data('url'));
 			break;
 		case 'zoom':
-			var regionOffset = region.offset(),
-				viewportOffset = $('.magazine-viewport').offset(),
-				pos = {
-					x: regionOffset.left - viewportOffset.left,
-					y: regionOffset.top - viewportOffset.top
-				};
-			$('.magazine-viewport').zoom('zoomIn', pos);
+
 			break;
 		case 'to-page':
-			$('.magazine').turn('page', region.data('page'));
+
 			break;
 		case 'area':
 			//en el json ver pid-- los numeros  deven ser igual a las paginas
 			//alert("div#" + region.data('ver') + " img")
-			console.log(region.data('ver'))
-			//Nota: error cuando se navega por los tumbnies las foto chicas de abajo
-			//regiones json no funcionana revisar este tema
-			let div_img = $("div#" + region.data('ver') + " img")
-			div_img.css('visibility', 'visible')
+			console.log(region.data('src2') + "  " + "div.region img#" + region.data('ver'))
+
+			let div_img = $("div.region img." + region.data('ver'))
+			div_img.attr('src', region.data('src2'));
+			div_img.css({ visibility: 'visible' })
 			break;
 
 		case 'gif':
@@ -478,4 +451,37 @@ function calculateBound(d) {
 	}
 
 	return bound;
+}
+
+function parseCssStringToObject(cssString) {
+	const styleObject = {};
+	// CAMBIO CLAVE: Dividir la cadena por comas (,) en lugar de puntos y comas (;)
+	cssString.split(',').forEach(declaration => {
+		declaration = declaration.trim();
+		if (!declaration) return; // Saltar si la declaración está vacía
+
+		// Dividir cada declaración por el primer colon (:)
+		const firstColonIndex = declaration.indexOf(':');
+		if (firstColonIndex === -1) {
+			console.warn(`Declaración CSS inválida (sin ':') o incompleta: ${declaration}`);
+			return;
+		}
+
+		// Limpiar el nombre de la propiedad
+		let propName = declaration.substring(0, firstColonIndex).trim();
+		// Remover cualquier comilla (simple o doble) que pueda envolver el nombre de la propiedad (ej. 'z-index')
+		propName = propName.replace(/^['"]|['"]$/g, '').trim();
+
+		// Obtener y limpiar el valor de la propiedad
+		let propValue = declaration.substring(firstColonIndex + 1).trim();
+		// Remover cualquier comilla (simple o doble) que pueda envolver el valor
+		propValue = propValue.replace(/^['"]|['"]$/g, '').trim();
+
+		// Convertir el nombre de la propiedad a camelCase (para jQuery)
+		// Ej. 'background-color' -> 'backgroundColor'
+		const camelCasePropName = propName.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+		styleObject[camelCasePropName] = propValue;
+	});
+	//console.log(styleObject)
+	return styleObject;
 }

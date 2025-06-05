@@ -1,24 +1,16 @@
 [
     { 
-        "x": 200,
-        "y": 430,
-        "width": 613, 
-        "height": 500, 
+        "x": 8,
+        "y": 325,
+        "width": 540, 
+        "height": 385, 
         "class": "area",
-        "ver":"img_1",
-        "idp":"area_1"
-
-    },
-
-    { 
-        "x": 50,
-        "y": 50,
-        "width": 160, 
-        "height": 80, 
-        "class": "gif",
-        "src":"pages/img/1-efect.gif",
-        "idp":"img_1"
-
+        "src1":"pages/animacion/page 17/click17-infinito.gif",
+        "style1":"width: '40%', height: 'auto', visibility: 'visible', position: 'absolute', 'z-index': '10',top: '190px',left: '325px'",
+        "src2":"pages/animacion/page 17/animacion17-una-repeticion.gif",
+        "style2":"width: '70%', height: 'auto', visibility: 'hidden', position: 'absolute', 'z-index': '20',top: '7px',left: '4px'",
+        "idp":"area_1",
+        "ver":"img_2_area_1"
 
     }
 ]

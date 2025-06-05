@@ -37,7 +37,7 @@
 	</div>
 
 	<!-- Thumbnails -->
-	<div class="thumbnails">
+	<div class="thumbnails" style="display: none;">
 		<div>
 			<ul>
 				<li class="i">
@@ -95,26 +95,26 @@
 </div>
 		
 		*/
-		  const audio1 = new Audio();
-		   audio1.src = 'efectos/hoja.mp3'
-		     let sonidosCargados = 0;
-        const totalSonidos = 2;
-		  function sonidoListo() {
-            sonidosCargados++;
-            if (sonidosCargados === totalSonidos) {
-                // Cuando todos los sonidos estén cargados
-                mensajeCarga.textContent = '¡Sonidos listos!';
-                btnSonido1.disabled = false; // Habilitamos los botones
-               
-            }
-        }
+		const audio1 = new Audio();
+		audio1.src = 'efectos/hoja.mp3'
+		let sonidosCargados = 0;
+		const totalSonidos = 2;
+		function sonidoListo() {
+			sonidosCargados++;
+			if (sonidosCargados === totalSonidos) {
+				// Cuando todos los sonidos estén cargados
+				mensajeCarga.textContent = '¡Sonidos listos!';
+				btnSonido1.disabled = false; // Habilitamos los botones
 
-        // Escuchamos el evento 'canplaythrough' para saber cuándo el sonido está completamente cargado y se puede reproducir sin interrupciones
-        audio1.addEventListener('canplaythrough', sonidoListo);
+			}
+		}
 
-		function play(){
-			 audio1.currentTime = 0; // Reinicia el sonido al principio si ya se está reproduciendo
-            audio1.play();
+		// Escuchamos el evento 'canplaythrough' para saber cuándo el sonido está completamente cargado y se puede reproducir sin interrupciones
+		audio1.addEventListener('canplaythrough', sonidoListo);
+
+		function play() {
+			audio1.currentTime = 0; // Reinicia el sonido al principio si ya se está reproduciendo
+			audio1.play();
 		}
 
 		function loadApp() {
@@ -150,7 +150,7 @@
 
 				// Auto center this flipbook
 
-				autoCenter: false,
+				autoCenter: true,
 
 				// The number of pages
 
@@ -347,7 +347,7 @@
 
 			// Events for thumbnails
 
-			$('.thumbnails').click(function (event) {
+			/* $('.thumbnails').click(function (event) {
 
 				var page;
 
@@ -355,9 +355,9 @@
 
 					$('.magazine').turn('page', page[1]);
 				}
-			});
+			}); */
 
-			$('.thumbnails li').
+			/* $('.thumbnails li').
 				bind($.mouseEvents.over, function () {
 
 					$(this).addClass('thumb-hover');
@@ -392,7 +392,7 @@
 
 				});
 
-			}
+			} */
 
 
 			// Regions
