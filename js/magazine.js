@@ -180,6 +180,7 @@ function addRegion(region, pageElement) {
 		//img(region).appendTo(reg);
 		img(region, reg)
 		reg.appendTo(pageElement);//el reg se inserta en pageElemto
+
 	}
 }
 
@@ -194,10 +195,25 @@ function nuevaImg(region, src, nr, style) {
 	let nuevaImagen = $("<img/>")
 	nuevaImagen.attr('src', src);
 	nuevaImagen.attr('alt', 'img');
-	nuevaImagen.addClass('img_' + nr + "_" + region.idp);
 
-	const myDynamicStyles = parseCssStringToObject(style)
-	nuevaImagen.css(myDynamicStyles);
+
+	//elementoJquery.attr('data-usuario-id', '987');
+	if (src) {
+		nuevaImagen.attr('data-src', region.src2)
+		nuevaImagen.attr('data-id', 'img_' + 2 + "_" + region.idp)
+		//para un id 'img_' + nr + "_" + region.idp + 
+		nuevaImagen.addClass(region.idp + " regionImagenPrincipal");//imagen principal para el click
+	} else {
+		nuevaImagen.addClass('img_' + nr + "_" + region.idp);
+
+
+	}
+
+	if (style) {
+		const myDynamicStyles = parseCssStringToObject(style)
+		nuevaImagen.css(myDynamicStyles);
+	}
+
 
 	return nuevaImagen;
 }
@@ -207,9 +223,10 @@ function nuevaImg(region, src, nr, style) {
 function regionClick(event) {
 
 	var region = $(event.target);
-	if (region.hasClass('region')) {
+	if (region.hasClass('regionImagenPrincipal')) {
 		console.log("evento click region")
-		var regionType = $.trim(region.attr('class').replace('region', ''));
+		var regionType = $.trim(region.attr('class').replace('regionImagenPrincipal', ''));
+		console.log(`Estoy en regionClick -> ${regionType}`)
 
 		return processRegion(region, regionType);
 	}
@@ -252,9 +269,10 @@ function regionClick(event) {
 
 } */
 function processRegion(region, regionType) {
-	console.log("processRegion:")
-	console.log(regionType)
-	switch (regionType) {
+	console.log(`processRegion regionType=${regionType}`)
+
+	const tipo = separarLetrasYNumeros(regionType)
+	switch (tipo.letras) {
 		case 'link':
 			window.open(region.data('url'));
 			break;
@@ -264,19 +282,18 @@ function processRegion(region, regionType) {
 		case 'to-page':
 
 			break;
-		case 'area':
-			//en el json ver pid-- los numeros  deven ser igual a las paginas
-			//alert("div#" + region.data('ver') + " img")
-			console.log(region.data('src2') + "  " + "div.region img#" + region.data('ver'))
-
-			let div_img = $("div.region img." + region.data('ver'))
-			div_img.attr('src', region.data('src2'));
-			div_img.css({ visibility: 'visible' })
-			break;
-
 		case 'gif':
-			//algo si lo toco
+
+
+			const img1 = document.querySelector("div#" + regionType + " ." + regionType)
+			let urlImg2 = img1.dataset.src;
+			let identificar = img1.dataset.id;
+			const img2 = document.querySelector("div#" + regionType + " ." + identificar)
+			img2.src = urlImg2
+			img2.style.visibility = 'visible';
+
 			break;
+
 
 	}
 }
@@ -484,4 +501,24 @@ function parseCssStringToObject(cssString) {
 	});
 	//console.log(styleObject)
 	return styleObject;
+}
+
+function separarLetrasYNumeros(cadena) {
+	// Usamos una expresión regular para encontrar letras al principio y números al final.
+	// (\D*)  -> Captura cero o más caracteres que NO son dígitos (letras) al principio.
+	// (\d*)  -> Captura cero o más dígitos (números) al final.
+	const match = cadena.match(/^(\D*)(\d*)$/);
+
+	if (match) {
+		// match[0] es la cadena completa (ej: "gif17")
+		// match[1] es la parte de letras (ej: "gif")
+		// match[2] es la parte de números (ej: "17")
+		return {
+			letras: match[1],
+			numeros: match[2]
+		};
+	} else {
+		// Si no coincide con el patrón esperado, devuelve null o un objeto vacío
+		return null; // O { letras: '', numeros: '' }
+	}
 }
