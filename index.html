@@ -103,8 +103,8 @@
 			sonidosCargados++;
 			if (sonidosCargados === totalSonidos) {
 				// Cuando todos los sonidos estén cargados
-				mensajeCarga.textContent = '¡Sonidos listos!';
-				btnSonido1.disabled = false; // Habilitamos los botones
+				//	mensajeCarga.textContent = '¡Sonidos listos!';
+				//btnSonido1.disabled = false; // Habilitamos los botones
 
 			}
 		}
@@ -161,7 +161,7 @@
 				when: {
 
 					turning: function (event, page, view) {
-
+						play(audio1)
 						var book = $(this),
 							currentPage = book.turn('page'),
 							pages = book.turn('pages');
@@ -202,8 +202,10 @@
 
 						// Add pages that aren't in the magazine
 
-						for (var i = 0; i < pages.length; i++)
+						for (var i = 0; i < pages.length; i++) {
 							addPage(pages[i], $(this));
+						}
+
 
 					}
 				}
@@ -298,7 +300,7 @@
 
 						// left arrow
 						$('.magazine').turn('previous');
-						play();
+						//play();
 						e.preventDefault();
 
 						break;
@@ -306,7 +308,7 @@
 
 						//right arrow
 						$('.magazine').turn('next');
-						play();
+						//play();
 						e.preventDefault();
 
 						break;
@@ -424,7 +426,7 @@
 				$(this).removeClass('next-button-down');
 
 			}).click(function () {
-
+				//play(audio1)
 				$('.magazine').turn('next');
 
 			});
@@ -448,7 +450,7 @@
 				$(this).removeClass('previous-button-down');
 
 			}).click(function () {
-
+				//play(audio1)
 				$('.magazine').turn('previous');
 
 			});

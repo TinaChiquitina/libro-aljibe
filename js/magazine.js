@@ -12,7 +12,7 @@ function sonidoListo2() {
 	sonidosCargados2++;
 	if (sonidosCargados2 === totalSonidos2) {
 		// Cuando todos los sonidos estén cargados
-		mensajeCarga.textContent = '¡Sonidos listos!';
+		//mensajeCarga.textContent = '¡Sonidos listos!';
 		//btnSonido1.disabled = false; // Habilitamos los botones
 
 	}
