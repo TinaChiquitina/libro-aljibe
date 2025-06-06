@@ -53,7 +53,7 @@ body{
 	-moz-border-radius:10px;
 	-ms-border-radius:10px;
 	-o-border-radius:10px; */
-	border:1px solid red;
+	/* border:1px solid red; */
 	
 	/* -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"; */
 	/* filter: alpha(opacity=20); */

@@ -290,6 +290,15 @@ function processRegion(region, regionType) {
 			let identificar = img1.dataset.id;
 			const img2 = document.querySelector("div#" + regionType + " ." + identificar)
 			img2.src = urlImg2
+
+			if (tipo.numeros == 22) {
+				console.log(tipo.numeros)
+				img1.style.zIndex = '10'
+
+				setTimeout(() => {
+					img1.style.zIndex = '30'
+				}, 2000);
+			}
 			img2.style.visibility = 'visible';
 
 			break;
