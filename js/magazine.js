@@ -2,6 +2,31 @@
  * Magazine sample
 */
 
+const audio2 = new Audio();
+const audio3 = new Audio();
+audio2.src = 'efectos/garras.mp3'
+audio3.src = 'efectos/ice-cube.mp3'
+let sonidosCargados2 = 0;
+const totalSonidos2 = 2;
+function sonidoListo2() {
+	sonidosCargados2++;
+	if (sonidosCargados2 === totalSonidos2) {
+		// Cuando todos los sonidos estén cargados
+		mensajeCarga.textContent = '¡Sonidos listos!';
+		//btnSonido1.disabled = false; // Habilitamos los botones
+
+	}
+}
+
+// Escuchamos el evento 'canplaythrough' para saber cuándo el sonido está completamente cargado y se puede reproducir sin interrupciones
+audio2.addEventListener('canplaythrough', sonidoListo2);
+audio3.addEventListener('canplaythrough', sonidoListo2);
+function play2(audio) {
+	audio.currentTime = 0; // Reinicia el sonido al principio si ya se está reproduciendo
+	audio.play();
+}
+
+
 function addPage(page, book) {
 
 	var id, pages = book.turn('pages');
@@ -292,13 +317,28 @@ function processRegion(region, regionType) {
 			img2.src = urlImg2
 
 			if (tipo.numeros == 22) {
-				console.log(tipo.numeros)
+
 				img1.style.zIndex = '10'
 
 				setTimeout(() => {
 					img1.style.zIndex = '30'
 				}, 2000);
+				setTimeout(() => {
+					play2(audio2)
+				}, 300);
+
 			}
+			if (tipo.numeros == 26) {
+				img1.style.zIndex = '10'
+
+				setTimeout(() => {
+					img1.style.zIndex = '30'
+				}, 2000);
+				setTimeout(() => {
+					play2(audio3)
+				}, 800);
+			}
+
 			img2.style.visibility = 'visible';
 
 			break;
