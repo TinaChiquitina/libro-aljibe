@@ -1,13 +1,6 @@
 [
     { 
-        "x": 200,
-        "y": 430,
-        "width": 65, 
-        "height": 80, 
-        "class": "area",
-        "src1":"pages/animacion/page 17/click17-infinito.gif",
-        "src2":"pages/animacion/page 17/",
-        "idp":"area_13"
+       "not":"not"
 
     }
 ]
