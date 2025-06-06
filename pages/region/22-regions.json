@@ -1,14 +1,14 @@
 [
     { 
         "x": 8,
-        "y": 325,
+        "y": 225,
         "width": 540, 
         "height": 385, 
         "class": "area",
         "src1":"pages/animacion/page 22/click22-infinito.gif",
         "style1":"width: '37%', height: 'auto', visibility: 'visible', position: 'absolute', 'z-index': '30',top: '181px',left: '300px'",
         "src2":"pages/animacion/page 22/animacion22-una-repeticion.gif",
-        "style2":"width: '70%', height: 'auto', visibility: 'hidden', position: 'absolute', 'z-index': '20',top: '83px',left: '202px'",
+        "style2":"width: '70%', height: 'auto', visibility: 'hidden', position: 'absolute', 'z-index': '20',top: '-48px',left: '152px'",
         "idp":"gif22",
         "tipo":"gif",
         "ver":"img_2_area_1"
