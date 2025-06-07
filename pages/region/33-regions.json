@@ -1,5 +1,17 @@
 [
-  {
-    "not": "not"
-  }
+    { 
+        "x": 0,
+        "y": 0,
+        "width": 613, 
+        "height": 800, 
+        "class": "area",
+        "src1":"pages/animacion/page 33/click33-muestra.gif",
+        "style1":"width: '49%', height: 'auto', visibility: 'visible', position: 'absolute', 'z-index': '30',top: '301px',left: '159px'",
+        "src2":"pages/animacion/page 33/animacion33-una-repeticion.gif",
+        "style2":"width: '100%', height: 'auto', visibility: 'hidden', position: 'absolute', 'z-index': '20',top: '0px',left: '1px'",
+        "idp":"gif33",
+        "tipo":"gif",
+        "ver":"img_2_area_1"
+
+    }
 ]

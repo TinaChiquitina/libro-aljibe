@@ -339,6 +339,19 @@ function processRegion(region, regionType) {
 				}, 800);
 			}
 
+			if (tipo.numeros == 33) {
+
+				img1.style.zIndex = '10'
+
+				setTimeout(() => {
+					img1.style.zIndex = '30'
+				}, 4800);
+				/* setTimeout(() => {
+					play2(audio2)
+				}, 300); */
+
+			}
+
 			img2.style.visibility = 'visible';
 
 			break;
