@@ -113,8 +113,11 @@
 		audio1.addEventListener('canplaythrough', sonidoListo);
 
 		function play() {
-			audio1.currentTime = 0; // Reinicia el sonido al principio si ya se está reproduciendo
-			audio1.play();
+			if (audio1) {
+				audio1.currentTime = 0; // Reinicia el sonido al principio si ya se está reproduciendo
+				audio1.play();
+			}
+
 		}
 
 		function loadApp() {

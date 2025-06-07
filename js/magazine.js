@@ -344,7 +344,12 @@ function processRegion(region, regionType) {
 				img1.style.zIndex = '10'
 
 				setTimeout(() => {
+					img2.style.opacity = '0.1'
+				}, 4100);
+
+				setTimeout(() => {
 					img1.style.zIndex = '30'
+					img2.style.opacity = '1'
 				}, 4800);
 				/* setTimeout(() => {
 					play2(audio2)
