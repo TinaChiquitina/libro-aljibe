@@ -4,8 +4,14 @@
 
 const audio2 = new Audio();
 const audio3 = new Audio();
+const audio4 = new Audio();
+const audio5 = new Audio();
+const audio6 = new Audio();
 audio2.src = 'efectos/garras.mp3'
 audio3.src = 'efectos/ice-cube.mp3'
+audio4.src = 'efectos/13.mp3'
+audio5.src = 'efectos/i-can-see-you.mp3'
+audio6.src = 'efectos/avoid-horror.mp3'
 let sonidosCargados2 = 0;
 const totalSonidos2 = 2;
 function sonidoListo2() {
@@ -21,6 +27,9 @@ function sonidoListo2() {
 // Escuchamos el evento 'canplaythrough' para saber cuándo el sonido está completamente cargado y se puede reproducir sin interrupciones
 audio2.addEventListener('canplaythrough', sonidoListo2);
 audio3.addEventListener('canplaythrough', sonidoListo2);
+audio4.addEventListener('canplaythrough', sonidoListo2);
+audio5.addEventListener('canplaythrough', sonidoListo2);
+audio6.addEventListener('canplaythrough', sonidoListo2);
 function play2(audio) {
 	audio.currentTime = 0; // Reinicia el sonido al principio si ya se está reproduciendo
 	audio.play();
@@ -316,6 +325,24 @@ function processRegion(region, regionType) {
 			const img2 = document.querySelector("div#" + regionType + " ." + identificar)
 			img2.src = urlImg2
 
+			if (tipo.numeros == 17) {
+				play2(audio5)
+				setTimeout(() => {
+					img2.style.visibility = 'visible';
+				}, 900);
+			}
+
+			if (tipo.numeros == 13) {
+
+				img1.style.zIndex = '10'
+				play2(audio4)
+				setTimeout(() => {
+					img1.style.zIndex = '30'
+				}, 2000);
+				img2.style.visibility = 'visible';
+				/*   */
+
+			}
 			if (tipo.numeros == 22) {
 
 				img1.style.zIndex = '10'
@@ -326,7 +353,7 @@ function processRegion(region, regionType) {
 				setTimeout(() => {
 					play2(audio2)
 				}, 300);
-
+				img2.style.visibility = 'visible';
 			}
 			if (tipo.numeros == 26) {
 				img1.style.zIndex = '10'
@@ -337,12 +364,16 @@ function processRegion(region, regionType) {
 				setTimeout(() => {
 					play2(audio3)
 				}, 800);
+				img2.style.visibility = 'visible';
 			}
 
 			if (tipo.numeros == 33) {
 
 				img1.style.zIndex = '10'
 
+				setTimeout(() => {
+					play2(audio6)
+				}, 200);
 				setTimeout(() => {
 					img2.style.opacity = '0.1'
 				}, 4100);
@@ -354,10 +385,10 @@ function processRegion(region, regionType) {
 				/* setTimeout(() => {
 					play2(audio2)
 				}, 300); */
-
+				img2.style.visibility = 'visible';
 			}
 
-			img2.style.visibility = 'visible';
+
 
 			break;
 

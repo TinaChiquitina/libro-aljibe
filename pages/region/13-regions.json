@@ -1,6 +1,17 @@
 [
     { 
-       "not":"not"
+        "x": 0,
+        "y": 0,
+        "width": 613, 
+        "height": 800, 
+        "class": "area",
+        "src1":"pages/animacion/page 13/click13-infinito.gif",
+        "style1":"width: '10%', height: 'auto', visibility: 'visible', position: 'absolute', 'z-index': '30',top: '282px',left: '269px'",
+        "src2":"pages/animacion/page 13/animacion13-una-repeticion.gif",
+        "style2":"width: '77%', height: 'auto', visibility: 'hidden', position: 'absolute', 'z-index': '20',top: '98px',left: '55px'",
+        "idp":"gif13",
+        "tipo":"gif",
+        "ver":"img_2_area_1"
 
     }
 ]
