@@ -11,7 +11,7 @@ audio2.src = 'efectos/garras.mp3'
 audio3.src = 'efectos/ice-cube.mp3'
 audio4.src = 'efectos/13.mp3'
 audio5.src = 'efectos/i-can-see-you.mp3'
-audio6.src = 'efectos/avoid-horror.mp3'
+audio6.src = 'efectos/33.mp3'
 let sonidosCargados2 = 0;
 const totalSonidos2 = 2;
 function sonidoListo2() {
@@ -326,10 +326,17 @@ function processRegion(region, regionType) {
 			img2.src = urlImg2
 
 			if (tipo.numeros == 17) {
+				img1.style.zIndex = '10'
 				play2(audio5)
 				setTimeout(() => {
+			 	img1.style.visibility='hidden'
+
 					img2.style.visibility = 'visible';
 				}, 900);
+				setTimeout(() => {
+					img1.style.zIndex = '30'
+					img1.style.visibility='visible'
+				}, 6500);
 			}
 
 			if (tipo.numeros == 13) {

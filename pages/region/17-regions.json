@@ -8,7 +8,7 @@
         "src1":"pages/animacion/page 17/click17-infinito.gif",
         "style1":"width: '40%', height: 'auto', visibility: 'visible', position: 'absolute', 'z-index': '10',top: '190px',left: '325px'",
         "src2":"pages/animacion/page 17/animacion17-una-repeticion.gif",
-        "style2":"width: '70%', height: 'auto', visibility: 'hidden', position: 'absolute', 'z-index': '20',top: '7px',left: '4px'",
+        "style2":"width: '85%', height: 'auto', visibility: 'hidden', position: 'absolute', 'z-index': '20',top: '45px',left: '61px'",
         "idp":"gif17",
         "tipo":"gif",
         "ver":"img_2_area_1"
